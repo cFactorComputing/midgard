@@ -11,20 +11,20 @@
 
     <files>
         <file>
-            <source>../gateway-main/target/swiftwallet-gateway.jar</source>
+            <source>../midgard-main/target/swiftwallet-midgard.jar</source>
             <outputDirectory>/</outputDirectory>
         </file>
         <!-- Configuration -->
         <file>
-            <source>../gateway-configuration/target/gateway-configuration-distribution.zip</source>
+            <source>../midgard-configuration/target/midgard-configuration-distribution.zip</source>
             <outputDirectory>/configuration</outputDirectory>
         </file>
         <file>
-            <source>../gateway-configuration/target/gateway-configuration/local/start.bat</source>
+            <source>../midgard-configuration/target/midgard-configuration/local/start.bat</source>
             <outputDirectory>/</outputDirectory>
         </file>
         <file>
-            <source>../gateway-configuration/target/gateway-configuration/local/start.sh</source>
+            <source>../midgard-configuration/target/midgard-configuration/local/start.sh</source>
             <outputDirectory>/</outputDirectory>
         </file>
     </files>

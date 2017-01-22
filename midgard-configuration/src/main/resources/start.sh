@@ -1,7 +1,7 @@
 #!/bin/bash
 rootpath=$(pwd)
-configHome=$rootpath/gateway-configuration/gateway-configuration-distribution
-logbackLocation=$rootpath/gateway-configuration/gateway-configuration-distribution
+configHome=$rootpath/midgard-configuration/midgard-configuration-distribution
+logbackLocation=$rootpath/midgard-configuration/midgard-configuration-distribution
 printf "Provide the configuration home (press enter to use the default path '$configHome'): "
 read userConfig
 if [ ! -z "$userConfig" ]
@@ -14,5 +14,5 @@ if [ ! -z "$userLogback" ]
     then
         logbackLocation=userLogback
 fi
-printf "java -Xmx2048m -Xms256m -jar $rootpath/swiftwallet-gateway.jar"
-java -Xmx2048m -Xms256m -Dodin.zookeeper.connectString=localhost:2181 -jar $rootpath/swiftwallet-gateway.jar
+printf "java -Xmx2048m -Xms256m -jar $rootpath/swiftwallet-midgard.jar"
+java -Xmx2048m -Xms256m -Dodin.zookeeper.connectString=localhost:2181 -jar $rootpath/swiftwallet-midgard.jar

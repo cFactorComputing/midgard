@@ -1,1 +1,1 @@
-API Gateway for all SwiftWallet Micro services.
+Midgard is a realm in Norse mythology. It is one of the Nine Worlds of North Mythology—the only one that is completely visible to mankind (the others may intersect with this visible realm but are mostly invisible).

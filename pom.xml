@@ -8,11 +8,11 @@
         <version>1.0</version>
     </parent>
     <groupId>io.swiftwallet</groupId>
-    <artifactId>gateway</artifactId>
+    <artifactId>midgard</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>Swift Wallet::Gateway</name>
+    <name>SwiftWallet::Midgard</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -34,10 +34,10 @@
         </dependencies>
     </dependencyManagement>
     <modules>
-        <module>gateway-core</module>
-        <module>gateway-main</module>
-        <module>gateway-configuration</module>
-        <module>gateway-distribution</module>
+        <module>midgard-core</module>
+        <module>midgard-main</module>
+        <module>midgard-configuration</module>
+        <module>midgard-distribution</module>
     </modules>
 
     <build>

@@ -4,20 +4,20 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>io.swiftwallet</groupId>
-        <artifactId>gateway</artifactId>
+        <artifactId>midgard</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    <groupId>io.swiftwallet.gateway</groupId>
-    <artifactId>gateway-distribution</artifactId>
+    <groupId>io.swiftwallet.midgard</groupId>
+    <artifactId>midgard-distribution</artifactId>
 
-    <name>Swift Wallet::Gateway::Distribution</name>
+    <name>SwiftWallet::Midgard::Distribution</name>
     <packaging>pom</packaging>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <build>
-        <finalName>swiftwallet-gateway</finalName>
+        <finalName>swiftwallet-midgard</finalName>
 
         <plugins>
             <plugin>
@@ -33,7 +33,7 @@
                         <configuration>
                             <artifacts>
                                 <artifact>
-                                    <file>${project.build.directory}/swiftwallet-gateway-distribution.zip</file>
+                                    <file>${project.build.directory}/swiftwallet-midgard-distribution.zip</file>
                                     <type>zip</type>
                                 </artifact>
                             </artifacts>
