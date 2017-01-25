@@ -31,6 +31,17 @@
                 <artifactId>odin-main</artifactId>
                 <version>${odin.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.swiftwallet.midgard</groupId>
+                <artifactId>midgard-core</artifactId>
+                <version>1.0-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.inject</groupId>
+                <artifactId>javax.inject</artifactId>
+                <version>1</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
     <modules>
