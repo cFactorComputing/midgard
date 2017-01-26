@@ -25,6 +25,10 @@
             <groupId>io.swiftwallet.odin</groupId>
             <artifactId>odin-main</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.swiftwallet.midgard</groupId>
+            <artifactId>midgard-core</artifactId>
+        </dependency>
     </dependencies>
     <build>
         <finalName>swiftwallet-midgard</finalName>

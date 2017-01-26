@@ -18,11 +18,13 @@ package io.swiftwallet.midgard.main;
 
 import io.swiftwallet.odin.core.bootstrap.config.annotations.OdinConfiguration;
 import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * The main class of the platform which actually starts the application
  */
 @OdinConfiguration
+@ComponentScan({"io.swiftwallet.midgard.security"})
 public class MidgardMain {
 
     public static void main(String[] args) throws Exception {
