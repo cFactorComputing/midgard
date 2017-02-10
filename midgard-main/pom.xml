@@ -18,14 +18,6 @@
     </properties>
     <dependencies>
         <dependency>
-            <groupId>io.swiftwallet.odin</groupId>
-            <artifactId>odin-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.swiftwallet.odin</groupId>
-            <artifactId>odin-main</artifactId>
-        </dependency>
-        <dependency>
             <groupId>io.swiftwallet.midgard</groupId>
             <artifactId>midgard-core</artifactId>
         </dependency>

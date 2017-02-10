@@ -1,0 +1,3 @@
+io.swiftwallet.odin.core.bootstrap.config.annotations.OdinConfiguration=\
+io.swiftwallet.midgard.core.proxy.config.ProxyServerConfiguration,\
+io.swiftwallet.midgard.core.cb.config.CircuiteBreakerConfiguration
