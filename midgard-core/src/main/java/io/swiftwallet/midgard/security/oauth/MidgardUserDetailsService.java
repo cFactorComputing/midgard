@@ -14,7 +14,7 @@ public class MidgardUserDetailsService implements UserDetailsService {
     private UserGenerator userGenerator;
 
     @Override
-    public UserDetails loadUserByUsername(final String userName) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(final String userName){
         return userGenerator.generateUser(userName);
     }
 }
