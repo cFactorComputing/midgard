@@ -8,5 +8,14 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "proxy")
 public class ProxyServerProperties {
 
-    private String prefix;
+    private boolean bufferRequests;
+
+
+    public boolean isBufferRequests() {
+        return bufferRequests;
+    }
+
+    public void setBufferRequests(boolean bufferRequests) {
+        this.bufferRequests = bufferRequests;
+    }
 }
