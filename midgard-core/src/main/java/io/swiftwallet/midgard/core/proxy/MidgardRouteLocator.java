@@ -19,7 +19,7 @@ public class MidgardRouteLocator extends SimpleRouteLocator {
     private static final Logger LOGGER = LoggerFactory.getLogger(MidgardRouteLocator.class);
 
     private final String zuulServletPath;
-    private static final String dispatcherServletPath = "/";
+    private static final String DISPATCHER_SERVLET_PATH = "/";
 
     public MidgardRouteLocator(final String servletPath, final ZuulProperties properties) {
         super(servletPath, properties);
@@ -41,12 +41,12 @@ public class MidgardRouteLocator extends SimpleRouteLocator {
         String adjustedPath = path;
 
         if (RequestUtils.isDispatcherServletRequest()
-                && StringUtils.hasText(this.dispatcherServletPath) && !this.dispatcherServletPath.equals("/")) {
-            adjustedPath = path.substring(this.dispatcherServletPath.length());
-            LOGGER.info("Stripped dispatcherServletPath");
+                && StringUtils.hasText(DISPATCHER_SERVLET_PATH) && !"/".equals(DISPATCHER_SERVLET_PATH)) {
+            adjustedPath = path.substring(DISPATCHER_SERVLET_PATH.length());
+            LOGGER.info("Stripped DISPATCHER_SERVLET_PATH");
 
         } else if (RequestUtils.isZuulServletRequest() && StringUtils.hasText(this.zuulServletPath)
-                && !this.zuulServletPath.equals("/")) {
+                && !"/".equals(this.zuulServletPath)) {
             adjustedPath = path.substring(this.zuulServletPath.length());
             LOGGER.info("Stripped zuulServletPath");
 
