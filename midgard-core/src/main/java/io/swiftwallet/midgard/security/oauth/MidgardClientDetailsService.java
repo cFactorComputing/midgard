@@ -3,7 +3,6 @@ package io.swiftwallet.midgard.security.oauth;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
-import org.springframework.security.oauth2.provider.ClientRegistrationException;
 import org.springframework.security.oauth2.provider.client.BaseClientDetails;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +23,7 @@ public class MidgardClientDetailsService implements ClientDetailsService {
 
 
     @Override
-    public ClientDetails loadClientByClientId(final String client) throws ClientRegistrationException {
+    public ClientDetails loadClientByClientId(final String client) {
         final BaseClientDetails details = new BaseClientDetails();
         details.setAccessTokenValiditySeconds(tokenValidity);
         details.setClientId(clientId);

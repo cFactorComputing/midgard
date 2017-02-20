@@ -19,13 +19,14 @@ public class MidgardRouteLocator extends SimpleRouteLocator {
     private static final Logger LOGGER = LoggerFactory.getLogger(MidgardRouteLocator.class);
 
     private final String zuulServletPath;
-    private final String dispatcherServletPath = "/";
+    private static final String dispatcherServletPath = "/";
 
     public MidgardRouteLocator(final String servletPath, final ZuulProperties properties) {
         super(servletPath, properties);
         this.zuulServletPath = servletPath;
     }
 
+    @Override
     public Route getMatchingRoute(final String path) {
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Locating route for path {}", path);
@@ -40,17 +41,15 @@ public class MidgardRouteLocator extends SimpleRouteLocator {
         String adjustedPath = path;
 
         if (RequestUtils.isDispatcherServletRequest()
-                && StringUtils.hasText(this.dispatcherServletPath)) {
-            if (!this.dispatcherServletPath.equals("/")) {
-                adjustedPath = path.substring(this.dispatcherServletPath.length());
-                LOGGER.info("Stripped dispatcherServletPath");
-            }
-        } else if (RequestUtils.isZuulServletRequest()) {
-            if (StringUtils.hasText(this.zuulServletPath)
-                    && !this.zuulServletPath.equals("/")) {
-                adjustedPath = path.substring(this.zuulServletPath.length());
-                LOGGER.info("Stripped zuulServletPath");
-            }
+                && StringUtils.hasText(this.dispatcherServletPath) && !this.dispatcherServletPath.equals("/")) {
+            adjustedPath = path.substring(this.dispatcherServletPath.length());
+            LOGGER.info("Stripped dispatcherServletPath");
+
+        } else if (RequestUtils.isZuulServletRequest() && StringUtils.hasText(this.zuulServletPath)
+                && !this.zuulServletPath.equals("/")) {
+            adjustedPath = path.substring(this.zuulServletPath.length());
+            LOGGER.info("Stripped zuulServletPath");
+
         }
         LOGGER.info("adjustedPath=" + path);
         return adjustedPath;
