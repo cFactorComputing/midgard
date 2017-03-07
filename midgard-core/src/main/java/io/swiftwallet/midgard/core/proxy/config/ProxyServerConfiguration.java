@@ -7,6 +7,7 @@ import io.swiftwallet.midgard.core.lb.LoadbalancerClientCommandFactory;
 import io.swiftwallet.midgard.core.lb.config.LoadbalancerConfiguration;
 import io.swiftwallet.midgard.core.proxy.MidgardRouteLocator;
 import io.swiftwallet.midgard.core.proxy.StartProxyServer;
+import io.swiftwallet.midgard.security.filter.AuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
@@ -15,7 +16,11 @@ import org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
 import org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter;
 import org.springframework.cloud.netflix.zuul.filters.post.SendResponseFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.*;
+import org.springframework.cloud.netflix.zuul.filters.pre.DebugFilter;
+import org.springframework.cloud.netflix.zuul.filters.pre.FormBodyWrapperFilter;
+import org.springframework.cloud.netflix.zuul.filters.pre.PreDecorationFilter;
+import org.springframework.cloud.netflix.zuul.filters.pre.Servlet30WrapperFilter;
+import org.springframework.cloud.netflix.zuul.filters.pre.ServletDetectionFilter;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonRoutingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -41,6 +46,9 @@ public class ProxyServerConfiguration {
 
     @Autowired
     private LoadbalancerClientCommandFactory loadbalancerClientCommandFactory;
+
+    @Autowired
+    private AuthenticationFilter authenticationFilter;
 
     @Bean
     public StartProxyServer startProxyServer(final Map<String, ZuulFilter> filters) {
@@ -109,6 +117,7 @@ public class ProxyServerConfiguration {
     @Bean
     public Map<String, ZuulFilter> filters() {
         final Map<String, ZuulFilter> filters = Maps.newHashMap();
+        filters.put("auth-filter", authenticationFilter);
         filters.put("load-balanced-routing-filter", ribbonRoutingFilter());
         filters.put("predecoraton-filter", preDecorationFilter());
         filters.put("debug-filter", debugFilter());

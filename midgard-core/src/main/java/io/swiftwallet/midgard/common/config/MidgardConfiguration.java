@@ -10,6 +10,8 @@ import org.springframework.data.gemfire.client.PoolFactoryBean;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
@@ -49,6 +51,11 @@ public class MidgardConfiguration {
         cacheRegionFactoryBean.setCache((GemFireCache) cacheFactoryBean.getObject());
         cacheRegionFactoryBean.setRegionName("authenticated-users");
         return cacheRegionFactoryBean;
+    }
+
+    @Bean
+    public TokenStore tokenStore() {
+        return new InMemoryTokenStore();
     }
 
     @Bean
