@@ -51,7 +51,7 @@ public class MidgardRouteLocator extends SimpleRouteLocator {
             LOGGER.info("Stripped zuulServletPath");
 
         }
-        LOGGER.info("adjustedPath=" + path);
+        LOGGER.info("adjustedPath=" + adjustedPath);
         return adjustedPath;
     }
 
