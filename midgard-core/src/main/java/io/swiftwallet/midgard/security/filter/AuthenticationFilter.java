@@ -3,6 +3,7 @@ package io.swiftwallet.midgard.security.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import io.swiftwallet.common.domain.security.AuthenticatedUser;
+import io.swiftwallet.common.domain.security.GrantType;
 import io.swiftwallet.common.domain.security.WalletUser;
 import io.swiftwallet.common.persistence.cache.repository.security.AuthenticatedUserCache;
 import io.swiftwallet.common.persistence.cache.repository.user.WalletUserCache;
@@ -38,7 +39,8 @@ public class AuthenticationFilter extends ZuulFilter {
         final RequestContext context = RequestContext.getCurrentContext();
         final HttpServletRequest request = context.getRequest();
         final String accessToken = request.getParameter("access_token");
-        final User user = userProvider.user();
+
+        final Object user = userProvider.user();
         if (StringUtils.isEmpty(accessToken) || user == null) {
             throw new AccessDeniedException("Access token or Authentication is empty");
         }
@@ -49,22 +51,31 @@ public class AuthenticationFilter extends ZuulFilter {
         return null;
     }
 
-    private void addNewUserToCache(final User user, final String accessToken) {
-        final WalletUser walletUser = walletUserCache.findOne(user.getUsername());
+    private void addNewUserToCache(final Object user, final String accessToken) {
         final OAuth2AccessToken token = tokenStore.readAccessToken(accessToken);
         if (token == null || token.isExpired()) {
             throw new AccessDeniedException("Access token is empty or expired");
         }
-        
         final AuthenticatedUser newUser = new AuthenticatedUser();
+        setUserByType(user, newUser);
         newUser.setAccessToken(token.getValue());
-        newUser.setWalletUser(walletUser);
         newUser.setExpiration(token.getExpiration());
         final OAuth2RefreshToken refreshToken = token.getRefreshToken();
         if (refreshToken != null) {
             newUser.setRefreshToken(refreshToken.getValue());
         }
         authenticatedUserCache.save(newUser);
+    }
+
+    private void setUserByType(final Object user, final AuthenticatedUser newUser) {
+        final GrantType grantType = userProvider.grantType();
+        if (grantType == GrantType.USER) {
+            final WalletUser walletUser = walletUserCache.findOne(((User) user).getUsername());
+            newUser.setWalletUser(walletUser);
+        } else if (GrantType.SYSTEM == grantType) {
+            newUser.setUserId((String) user);
+        }
+        newUser.setGrantType(grantType);
     }
 
     @Override
