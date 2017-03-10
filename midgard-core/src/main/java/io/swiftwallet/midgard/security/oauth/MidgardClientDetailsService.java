@@ -40,6 +40,13 @@ public class MidgardClientDetailsService implements ClientDetailsService {
         scope.add("write");
         details.setScope(scope);
 
+        final Set<String> grantTypes = new HashSet<>();
+        grantTypes.add("client_credentials");
+        grantTypes.add("password");
+        grantTypes.add("refresh_token");
+        details.setAuthorizedGrantTypes(grantTypes);
+
+        details.setRefreshTokenValiditySeconds(tokenValidity * 2);
         return details;
     }
 }

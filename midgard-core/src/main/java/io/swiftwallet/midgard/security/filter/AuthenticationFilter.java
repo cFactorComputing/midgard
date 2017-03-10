@@ -59,6 +59,7 @@ public class AuthenticationFilter extends ZuulFilter {
         final AuthenticatedUser newUser = new AuthenticatedUser();
         setUserByType(user, newUser);
         newUser.setAccessToken(token.getValue());
+        newUser.setScope(token.getScope());
         newUser.setExpiration(token.getExpiration());
         final OAuth2RefreshToken refreshToken = token.getRefreshToken();
         if (refreshToken != null) {
