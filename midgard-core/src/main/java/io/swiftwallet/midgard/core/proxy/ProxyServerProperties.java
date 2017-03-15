@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class ProxyServerProperties {
 
     private boolean bufferRequests;
-
+    private boolean executionTimeoutEnabled = false;
 
     public boolean isBufferRequests() {
         return bufferRequests;
@@ -17,5 +17,13 @@ public class ProxyServerProperties {
 
     public void setBufferRequests(boolean bufferRequests) {
         this.bufferRequests = bufferRequests;
+    }
+
+    public boolean isExecutionTimeoutEnabled() {
+        return executionTimeoutEnabled;
+    }
+
+    public void setExecutionTimeoutEnabled(boolean executionTimeoutEnabled) {
+        this.executionTimeoutEnabled = executionTimeoutEnabled;
     }
 }

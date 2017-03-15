@@ -3,7 +3,7 @@ package io.swiftwallet.midgard.core.proxy.config;
 import com.google.common.collect.Maps;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.http.ZuulServlet;
-import io.swiftwallet.midgard.core.lb.LoadbalancerClientCommandFactory;
+import io.swiftwallet.midgard.core.lb.LoadBalancerClientCommandFactory;
 import io.swiftwallet.midgard.core.lb.config.LoadbalancerConfiguration;
 import io.swiftwallet.midgard.core.proxy.MidgardRouteLocator;
 import io.swiftwallet.midgard.core.proxy.StartProxyServer;
@@ -45,7 +45,7 @@ public class ProxyServerConfiguration {
     private List<RibbonRequestCustomizer> requestCustomizers = Collections.emptyList();
 
     @Autowired
-    private LoadbalancerClientCommandFactory loadbalancerClientCommandFactory;
+    private LoadBalancerClientCommandFactory loadBalancerClientCommandFactory;
 
     @Autowired
     private AuthenticationFilter authenticationFilter;
@@ -70,7 +70,7 @@ public class ProxyServerConfiguration {
 
     @Bean
     public RibbonRoutingFilter ribbonRoutingFilter() {
-        return new RibbonRoutingFilter(proxyRequestHelper(), loadbalancerClientCommandFactory, requestCustomizers);
+        return new RibbonRoutingFilter(proxyRequestHelper(), loadBalancerClientCommandFactory, requestCustomizers);
     }
 
     @Bean
