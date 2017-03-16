@@ -22,7 +22,10 @@ import javax.inject.Inject;
 import java.security.SecureRandom;
 
 @Configuration
-@EnableGemfireRepositories(basePackages = "io.swiftwallet.**.cache.repository")
+@EnableGemfireRepositories(basePackages = {
+        "io.swiftwallet.**.cache.repository.security",
+        "io.swiftwallet.**.cache.repository.user"
+})
 @EnableTransactionManagement
 public class MidgardConfiguration {
     private final PoolFactoryBean poolFactoryBean;
