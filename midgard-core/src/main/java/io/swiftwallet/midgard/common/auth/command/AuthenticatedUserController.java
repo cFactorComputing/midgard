@@ -10,14 +10,13 @@ import javax.inject.Inject;
 
 @RestController
 public class AuthenticatedUserController {
-    private AuthenticatedUserFacade authenticatedUserFacade;
+    private final AuthenticatedUserFacade authenticatedUserFacade;
 
     @Inject
     public AuthenticatedUserController(final AuthenticatedUserFacade authenticatedUserFacade) {
         this.authenticatedUserFacade = authenticatedUserFacade;
     }
 
-    @PreAuthorize("#oauth2.hasScope('write') and hasRole('ROLE_USER')")
     @RequestMapping(value = "/command/logout", method = RequestMethod.POST)
     private void logout(@RequestParam("access_token") final String accessToken) {
         authenticatedUserFacade.logout(accessToken);

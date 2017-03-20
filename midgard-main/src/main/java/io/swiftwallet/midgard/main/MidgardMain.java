@@ -25,7 +25,7 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @OdinConfiguration
 @ComponentScan({"io.swiftwallet.common.util.security",
-        "io.swiftwallet.midgard.**"})
+        "io.swiftwallet.midgard"})
 public class MidgardMain {
 
     public static void main(String[] args) throws Exception {

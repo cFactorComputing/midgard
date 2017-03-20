@@ -13,7 +13,7 @@ import javax.inject.Inject;
 public class AuthenticatedUserFacade {
     private final AuthenticatedUserProvider userProvider;
     private final AuthenticatedUserCache authenticatedUserCache;
-    private TokenStore tokenStore;
+    private final TokenStore tokenStore;
 
     @Inject
     public AuthenticatedUserFacade(final AuthenticatedUserProvider userProvider,
