@@ -40,7 +40,7 @@
                     <addResources>false</addResources>
                     <jvmArguments>
                         -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5007
-                        -Dodin.zookeeper.connectString=localhost:2181
+                        -Dodin.zookeeper.connectString=localhost:2181 -Dmicro-service.id=midgard-node1
                     </jvmArguments>
                 </configuration>
             </plugin>
