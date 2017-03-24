@@ -24,7 +24,7 @@ import org.springframework.context.annotation.ComponentScan;
  * The main class of the platform which actually starts the application
  */
 @OdinConfiguration
-@ComponentScan({"io.swiftwallet.common.util.security",
+@ComponentScan({"io.swiftwallet.commons.util.security",
         "io.swiftwallet.midgard"})
 public class MidgardMain {
 
