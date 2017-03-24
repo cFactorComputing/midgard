@@ -1,7 +1,7 @@
 package io.swiftwallet.midgard.common.config;
 
 import com.gemstone.gemfire.cache.GemFireCache;
-import io.swiftwallet.common.util.security.crypto.password.WalletPasswordEncoder;
+import io.swiftwallet.commons.util.security.crypto.password.WalletPasswordEncoder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.client.ClientCacheFactoryBean;

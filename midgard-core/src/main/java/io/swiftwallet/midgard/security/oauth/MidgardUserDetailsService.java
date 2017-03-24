@@ -1,8 +1,8 @@
 package io.swiftwallet.midgard.security.oauth;
 
-import io.swiftwallet.common.domain.security.WalletUser;
-import io.swiftwallet.common.persistence.cache.repository.user.WalletUserCache;
-import io.swiftwallet.common.util.security.generator.UserGenerator;
+import io.swiftwallet.commons.domain.security.WalletUser;
+import io.swiftwallet.commons.persistence.cache.repository.user.WalletUserCache;
+import io.swiftwallet.commons.util.security.generator.UserGenerator;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

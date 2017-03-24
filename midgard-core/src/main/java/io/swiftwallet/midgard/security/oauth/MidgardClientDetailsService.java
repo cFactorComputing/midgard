@@ -1,6 +1,6 @@
 package io.swiftwallet.midgard.security.oauth;
 
-import io.swiftwallet.common.util.security.crypto.password.WalletPasswordEncoder;
+import io.swiftwallet.commons.util.security.crypto.password.WalletPasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
