@@ -7,6 +7,7 @@ import io.swiftwallet.midgard.core.lb.LoadBalancerClientCommandFactory;
 import io.swiftwallet.midgard.core.lb.config.LoadbalancerConfiguration;
 import io.swiftwallet.midgard.core.proxy.MidgardRouteLocator;
 import io.swiftwallet.midgard.core.proxy.StartProxyServer;
+import io.swiftwallet.midgard.core.proxy.filter.SendErrorFilter;
 import io.swiftwallet.midgard.security.filter.AuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -14,13 +15,8 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.netflix.ribbon.support.RibbonRequestCustomizer;
 import org.springframework.cloud.netflix.zuul.filters.ProxyRequestHelper;
 import org.springframework.cloud.netflix.zuul.filters.ZuulProperties;
-import org.springframework.cloud.netflix.zuul.filters.post.SendErrorFilter;
 import org.springframework.cloud.netflix.zuul.filters.post.SendResponseFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.DebugFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.FormBodyWrapperFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.PreDecorationFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.Servlet30WrapperFilter;
-import org.springframework.cloud.netflix.zuul.filters.pre.ServletDetectionFilter;
+import org.springframework.cloud.netflix.zuul.filters.pre.*;
 import org.springframework.cloud.netflix.zuul.filters.route.RibbonRoutingFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -95,7 +91,7 @@ public class ProxyServerConfiguration {
 
     @Bean
     public SendErrorFilter sendErrorFilter() {
-        return new SendErrorFilter();
+        return new SendErrorFilter(sendResponseFilter());
     }
 
     @Bean
