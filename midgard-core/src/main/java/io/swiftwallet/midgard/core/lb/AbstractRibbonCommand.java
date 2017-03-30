@@ -17,16 +17,15 @@ import org.springframework.cloud.netflix.zuul.filters.route.ZuulFallbackProvider
 import org.springframework.http.client.ClientHttpResponse;
 
 /**
- *
  * This is just an overridden file of org.springframework.cloud.netflix.zuul.filters.route.support.AbstractRibbonCommand
  * to configure executionTimeoutEnabled Hystrix Command Property
- * @see org.springframework.cloud.netflix.zuul.filters.route.support.AbstractRibbonCommand
  *
+ * @see org.springframework.cloud.netflix.zuul.filters.route.support.AbstractRibbonCommand
  */
 public abstract class AbstractRibbonCommand<LBC extends AbstractLoadBalancerAwareClient<RQ, RS>, RQ extends ClientRequest, RS extends HttpResponse>
         extends HystrixCommand<ClientHttpResponse> implements RibbonCommand {
 
-    protected final LBC client;
+    protected LBC client;
     protected RibbonCommandContext context;
     protected ZuulFallbackProvider zuulFallbackProvider;
     protected IClientConfig config;
@@ -64,6 +63,7 @@ public abstract class AbstractRibbonCommand<LBC extends AbstractLoadBalancerAwar
         final HystrixCommandProperties.Setter setter = HystrixCommandProperties.Setter();
 
         setter.withExecutionTimeoutEnabled(zuulProperties.isExecutionTimeoutEnabled());
+        setter.withCircuitBreakerEnabled(false);
 
         return Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("RibbonCommand"))
                 .andCommandKey(HystrixCommandKey.Factory.asKey(commandKey))
@@ -94,7 +94,7 @@ public abstract class AbstractRibbonCommand<LBC extends AbstractLoadBalancerAwar
 
     @Override
     protected ClientHttpResponse getFallback() {
-        if(zuulFallbackProvider != null) {
+        if (zuulFallbackProvider != null) {
             return zuulFallbackProvider.fallbackResponse();
         }
         return super.getFallback();
@@ -109,4 +109,8 @@ public abstract class AbstractRibbonCommand<LBC extends AbstractLoadBalancerAwar
     }
 
     protected abstract RQ createRequest() throws Exception;
+
+    public void setClient(LBC client) {
+        this.client = client;
+    }
 }
