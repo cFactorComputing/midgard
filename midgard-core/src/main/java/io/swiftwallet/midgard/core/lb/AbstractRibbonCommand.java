@@ -73,12 +73,12 @@ public abstract class AbstractRibbonCommand<LBC extends AbstractLoadBalancerAwar
 
     @Override
     protected ClientHttpResponse run() throws Exception {
-        final RequestContext context = RequestContext.getCurrentContext();
+        final RequestContext currentContext = RequestContext.getCurrentContext();
 
         RQ request = createRequest();
         RS response = this.client.executeWithLoadBalancer(request, config);
 
-        context.set("ribbonResponse", response);
+        currentContext.set("ribbonResponse", response);
 
         // Explicitly close the HttpResponse if the Hystrix command timed out to
         // release the underlying HTTP connection held by the response.

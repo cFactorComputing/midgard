@@ -54,7 +54,7 @@ public class SendErrorFilter extends ZuulFilter {
             final ZuulException exception = findZuulException(ctx.getThrowable());
             final HttpServletRequest request = ctx.getRequest();
             final HttpServletResponse response = ctx.getResponse();
-            if (response == null && response.getOutputStream() == null) {
+            if (response == null || response.getOutputStream() == null) {
                 return null;
             }
             response.setStatus(exception.nStatusCode);
