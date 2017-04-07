@@ -4,12 +4,11 @@
     <parent>
         <groupId>io.swiftwallet</groupId>
         <artifactId>midgard</artifactId>
-        <version>1.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
 
     <groupId>io.swiftwallet.midgard</groupId>
     <artifactId>midgard-configuration</artifactId>
-    <version>1.0</version>
 
     <name>SwiftWallet::Midgard::Configuration</name>
     <packaging>pom</packaging>

@@ -4,7 +4,7 @@
     <parent>
         <groupId>io.swiftwallet</groupId>
         <artifactId>midgard</artifactId>
-        <version>1.0</version>
+        <version>1.1-SNAPSHOT</version>
     </parent>
     <groupId>io.swiftwallet.midgard</groupId>
     <artifactId>midgard-distribution</artifactId>
