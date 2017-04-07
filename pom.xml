@@ -176,5 +176,10 @@
             </plugin>
         </plugins>
     </build>
-
+    <scm>
+        <connection>scm:git:ssh://gibu.george@git.swiftwallet.aws.local/swiftwallet/midgard.git</connection>
+        <developerConnection>
+            scm:git:ssh://gibu.george@git.swiftwallet.aws.local/swiftwallet/midgard.git
+        </developerConnection>
+    </scm>
 </project>
