@@ -21,20 +21,31 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class AuthenticationFilter extends ZuulFilter {
+
+    private final AuthenticatedUserCache authenticatedUserCache;
+
+    private final WalletUserCache walletUserCache;
+
+    private final AuthenticatedUserProvider userProvider;
+
+    private final TokenStore tokenStore;
+
     @Inject
-    private AuthenticatedUserCache authenticatedUserCache;
-    @Inject
-    private WalletUserCache walletUserCache;
-    @Inject
-    private AuthenticatedUserProvider userProvider;
-    @Inject
-    private TokenStore tokenStore;
+    public AuthenticationFilter(AuthenticatedUserCache authenticatedUserCache,
+                                WalletUserCache walletUserCache, AuthenticatedUserProvider userProvider,
+                                TokenStore tokenStore) {
+        this.authenticatedUserCache = authenticatedUserCache;
+        this.walletUserCache = walletUserCache;
+        this.userProvider = userProvider;
+        this.tokenStore = tokenStore;
+    }
 
     @Override
     public boolean shouldFilter() {
         return true;
     }
 
+    @Override
     public Object run() {
         final RequestContext context = RequestContext.getCurrentContext();
         final HttpServletRequest request = context.getRequest();
