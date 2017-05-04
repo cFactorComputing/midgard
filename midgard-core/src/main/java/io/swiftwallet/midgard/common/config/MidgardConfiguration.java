@@ -1,15 +1,10 @@
 package io.swiftwallet.midgard.common.config;
 
-import com.gemstone.gemfire.cache.GemFireCache;
-import io.swiftwallet.commons.util.security.crypto.password.WalletPasswordEncoder;
+import io.swiftwallet.commons.util.cache.CacheRegionFactoryProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.gemfire.client.ClientCacheFactoryBean;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
-import org.springframework.data.gemfire.client.PoolFactoryBean;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -19,7 +14,6 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.inject.Inject;
-import java.security.SecureRandom;
 
 @Configuration
 @EnableGemfireRepositories(basePackages = {
@@ -28,32 +22,21 @@ import java.security.SecureRandom;
 })
 @EnableTransactionManagement
 public class MidgardConfiguration {
-    private final PoolFactoryBean poolFactoryBean;
-    private final ClientCacheFactoryBean cacheFactoryBean;
+    private final CacheRegionFactoryProvider cacheRegionFactoryProvider;
 
     @Inject
-    public MidgardConfiguration(final PoolFactoryBean poolFactoryBean,
-                                final ClientCacheFactoryBean cacheFactoryBean) {
-        this.poolFactoryBean = poolFactoryBean;
-        this.cacheFactoryBean = cacheFactoryBean;
+    public MidgardConfiguration(final CacheRegionFactoryProvider cacheRegionFactoryProvider) {
+        this.cacheRegionFactoryProvider = cacheRegionFactoryProvider;
     }
 
     @Bean
     public ClientRegionFactoryBean usersRegionFactoryBean() throws Exception {
-        final ClientRegionFactoryBean cacheRegionFactoryBean = new ClientRegionFactoryBean();
-        cacheRegionFactoryBean.setPool(poolFactoryBean.getPool());
-        cacheRegionFactoryBean.setCache((GemFireCache) cacheFactoryBean.getObject());
-        cacheRegionFactoryBean.setRegionName("users");
-        return cacheRegionFactoryBean;
+        return cacheRegionFactoryProvider.provide("users");
     }
 
     @Bean
     public ClientRegionFactoryBean authenticatedUsersRegionFactoryBean() throws Exception {
-        final ClientRegionFactoryBean cacheRegionFactoryBean = new ClientRegionFactoryBean();
-        cacheRegionFactoryBean.setPool(poolFactoryBean.getPool());
-        cacheRegionFactoryBean.setCache((GemFireCache) cacheFactoryBean.getObject());
-        cacheRegionFactoryBean.setRegionName("authenticated-users");
-        return cacheRegionFactoryBean;
+        return cacheRegionFactoryProvider.provide("authenticated-users");
     }
 
     @Bean
