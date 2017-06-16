@@ -27,7 +27,7 @@ public class MidgardUserDetailsService implements UserDetailsService {
         if (StringUtils.contains(userId, "@")) {
             walletUser = walletUserCache.findByEmail(userId);
         } else {
-            walletUser = walletUserCache.findOne(userId);
+            walletUser = walletUserCache.findByMobileNumber(userId);
         }
         return userGenerator.generate(walletUser);
     }
