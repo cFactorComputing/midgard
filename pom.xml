@@ -8,19 +8,19 @@
     </parent>
     <groupId>io.swiftwallet</groupId>
     <artifactId>midgard</artifactId>
-    <version>1.1</version>
+    <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
     <name>SwiftWallet::Midgard</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <odin.version>1.2-SNAPSHOT</odin.version>
+        <odin.version>1.2</odin.version>
         <midgard-zuul.version>1.3.0</midgard-zuul.version>
         <midgard-hystrix.version>1.5.9</midgard-hystrix.version>
         <midgard-guava.version>16.0.1</midgard-guava.version>
         <midgard-spring-cloud-netflix.version>1.3.0.M1</midgard-spring-cloud-netflix.version>
-        <midgard-swiftwallet-commons.version>1.1-SNAPSHOT</midgard-swiftwallet-commons.version>
+        <midgard-swiftwallet-commons.version>1.2-SNAPSHOT</midgard-swiftwallet-commons.version>
     </properties>
 
     <dependencyManagement>
@@ -28,22 +28,22 @@
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>domain</artifactId>
-                <version>1.1</version>
+                <version>${midgard-swiftwallet-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>persistence</artifactId>
-                <version>1.1</version>
+                <version>${midgard-swiftwallet-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>util</artifactId>
-                <version>1.1</version>
+                <version>${midgard-swiftwallet-commons.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.odin</groupId>
                 <artifactId>odin-core</artifactId>
-                <version>1.2</version>
+                <version>${odin.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.odin</groupId>
