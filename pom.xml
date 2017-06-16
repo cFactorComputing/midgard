@@ -4,11 +4,11 @@
     <parent>
         <groupId>io.swiftwallet</groupId>
         <artifactId>odin</artifactId>
-        <version>1.2-SNAPSHOT</version>
+        <version>1.2</version>
     </parent>
     <groupId>io.swiftwallet</groupId>
     <artifactId>midgard</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1</version>
     <packaging>pom</packaging>
 
     <name>SwiftWallet::Midgard</name>
@@ -28,22 +28,22 @@
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>domain</artifactId>
-                <version>${midgard-swiftwallet-commons.version}</version>
+                <version>1.1</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>persistence</artifactId>
-                <version>${midgard-swiftwallet-commons.version}</version>
+                <version>1.1</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.commons</groupId>
                 <artifactId>util</artifactId>
-                <version>${midgard-swiftwallet-commons.version}</version>
+                <version>1.1</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.odin</groupId>
                 <artifactId>odin-core</artifactId>
-                <version>${odin.version}</version>
+                <version>1.2</version>
             </dependency>
             <dependency>
                 <groupId>io.swiftwallet.odin</groupId>
@@ -181,6 +181,6 @@
         <developerConnection>
             scm:git:ssh://gibu.george@git.swiftwallet.aws.local/swiftwallet/midgard.git
         </developerConnection>
-      <tag>midgard-1.0</tag>
+      <tag>midgard-1.1</tag>
   </scm>
 </project>
