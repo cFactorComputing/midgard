@@ -1,6 +1,6 @@
 package io.swiftwallet.midgard.common.config;
 
-import io.swiftwallet.commons.util.cache.CacheRegionFactoryProvider;
+import in.cfcomputing.odin.core.services.gemfire.CacheRegionFactoryProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
@@ -13,8 +13,6 @@ import org.springframework.transaction.TransactionException;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.inject.Inject;
-
 @Configuration
 @EnableGemfireRepositories(basePackages = {
         "io.swiftwallet.**.cache.repository.security",
@@ -24,7 +22,6 @@ import javax.inject.Inject;
 public class MidgardConfiguration {
     private final CacheRegionFactoryProvider cacheRegionFactoryProvider;
 
-    @Inject
     public MidgardConfiguration(final CacheRegionFactoryProvider cacheRegionFactoryProvider) {
         this.cacheRegionFactoryProvider = cacheRegionFactoryProvider;
     }

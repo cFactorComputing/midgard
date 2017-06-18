@@ -16,7 +16,7 @@
 
 package io.swiftwallet.midgard.main;
 
-import io.swiftwallet.odin.core.bootstrap.config.annotations.OdinConfiguration;
+import in.cfcomputing.odin.core.bootstrap.config.annotations.OdinConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.annotation.ComponentScan;
 
@@ -25,8 +25,9 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @OdinConfiguration
 @ComponentScan({
+        "in.cfcomputing.odin.core.services.security.provider",
+        "in.cfcomputing.odin.core.services.security.password",
         "io.swiftwallet.commons.util.security",
-        "io.swiftwallet.commons.util.cache",
         "io.swiftwallet.midgard"})
 public class MidgardMain {
 

@@ -1,6 +1,6 @@
 package io.swiftwallet.midgard.security.oauth;
 
-import io.swiftwallet.commons.util.security.crypto.password.WalletPasswordEncoder;
+import in.cfcomputing.odin.core.services.security.password.DefaultPasswordEncoder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth2.provider.ClientDetails;
 import org.springframework.security.oauth2.provider.ClientDetailsService;
@@ -21,7 +21,7 @@ public class MidgardClientDetailsService implements ClientDetailsService {
     public MidgardClientDetailsService(@Value("${security.user.name}") final String clientId,
                                        @Value("${security.user.password}") final String clientSecret,
                                        @Value("${oauth2.token.validity:3600}") final int tokenValidity,
-                                       final WalletPasswordEncoder passwordEncoder) {
+                                       final DefaultPasswordEncoder passwordEncoder) {
         this.clientId = clientId;
         this.clientSecret = passwordEncoder.encode(clientSecret);
         this.tokenValidity = tokenValidity;
