@@ -2,12 +2,12 @@ package io.swiftwallet.midgard.security.filter;
 
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
+import in.cfcomputing.odin.core.services.security.domain.GrantType;
+import in.cfcomputing.odin.core.services.security.provider.AuthenticatedUserProvider;
 import io.swiftwallet.commons.domain.security.AuthenticatedUser;
-import io.swiftwallet.commons.domain.security.GrantType;
 import io.swiftwallet.commons.domain.security.WalletUser;
 import io.swiftwallet.commons.persistence.cache.repository.security.AuthenticatedUserCache;
 import io.swiftwallet.commons.persistence.cache.repository.user.WalletUserCache;
-import io.swiftwallet.commons.util.security.provider.AuthenticatedUserProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.userdetails.User;
@@ -21,13 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 
 @Component
 public class AuthenticationFilter extends ZuulFilter {
-
     private final AuthenticatedUserCache authenticatedUserCache;
-
     private final WalletUserCache walletUserCache;
-
     private final AuthenticatedUserProvider userProvider;
-
     private final TokenStore tokenStore;
 
     @Inject
