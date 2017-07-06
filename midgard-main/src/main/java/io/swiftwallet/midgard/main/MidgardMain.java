@@ -28,7 +28,9 @@ import org.springframework.context.annotation.ComponentScan;
         "in.cfcomputing.odin.core.services.security.provider",
         "in.cfcomputing.odin.core.services.security.password",
         "io.swiftwallet.commons.util.security",
-        "io.swiftwallet.midgard"})
+        "io.swiftwallet.commons.util.cache",
+        "io.swiftwallet.midgard"
+})
 public class MidgardMain {
 
     public static void main(String[] args) throws Exception {
