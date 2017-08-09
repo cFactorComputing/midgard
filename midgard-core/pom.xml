@@ -19,15 +19,15 @@
 
     <dependencies>
         <dependency>
-            <groupId>io.swiftwallet.commons</groupId>
+            <groupId>com.paytezz.commons</groupId>
             <artifactId>domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.swiftwallet.commons</groupId>
+            <groupId>com.paytezz.commons</groupId>
             <artifactId>persistence</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.swiftwallet.commons</groupId>
+            <groupId>com.paytezz.commons</groupId>
             <artifactId>util</artifactId>
         </dependency>
         <dependency>
