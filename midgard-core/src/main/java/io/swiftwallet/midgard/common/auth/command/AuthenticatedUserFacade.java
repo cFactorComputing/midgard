@@ -1,8 +1,8 @@
 package io.swiftwallet.midgard.common.auth.command;
 
 import in.cfcomputing.odin.core.services.security.provider.AuthenticatedUserProvider;
-import io.swiftwallet.commons.domain.security.AuthenticatedUser;
-import io.swiftwallet.commons.persistence.cache.repository.security.AuthenticatedUserCache;
+import com.paytezz.commons.domain.security.AuthenticatedUser;
+import com.paytezz.commons.persistence.cache.repository.security.AuthenticatedUserCache;
 import org.springframework.security.oauth2.common.OAuth2AccessToken;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.stereotype.Service;

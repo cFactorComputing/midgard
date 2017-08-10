@@ -27,8 +27,9 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({
         "in.cfcomputing.odin.core.services.security.provider",
         "in.cfcomputing.odin.core.services.security.password",
-        "io.swiftwallet.commons.util.security",
-        "io.swiftwallet.commons.util.cache",
+        "com.paytezz.commons.persistence.cache",
+        "com.paytezz.commons.util.security",
+        "com.paytezz.commons.util.cache",
         "io.swiftwallet.midgard"
 })
 public class MidgardMain {
