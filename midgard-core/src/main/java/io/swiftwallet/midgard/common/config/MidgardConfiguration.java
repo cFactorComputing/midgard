@@ -1,13 +1,14 @@
 package io.swiftwallet.midgard.common.config;
 
-import in.cfcomputing.odin.core.services.gemfire.CacheRegionFactoryProvider;
+import com.paytezz.commons.persistence.cache.repository.token.WalletTokenCache;
 import com.paytezz.commons.util.cache.CacheProvider;
+import in.cfcomputing.odin.core.services.gemfire.CacheRegionFactoryProvider;
+import io.swiftwallet.midgard.security.oauth.WalletTokenStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.gemfire.client.ClientRegionFactoryBean;
 import org.springframework.data.gemfire.repository.config.EnableGemfireRepositories;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.InMemoryTokenStore;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionException;
@@ -53,7 +54,7 @@ public class MidgardConfiguration {
 
     @Bean
     public TokenStore tokenStore() {
-        return new InMemoryTokenStore();
+        return new WalletTokenStore(cacheProvider.provide(WalletTokenCache.class));
     }
 
     @Bean
