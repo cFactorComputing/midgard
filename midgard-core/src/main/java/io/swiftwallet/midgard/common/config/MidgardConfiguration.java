@@ -37,6 +37,11 @@ public class MidgardConfiguration {
     }
 
     @Bean
+    public ClientRegionFactoryBean userAccessCodesRegionFactoryBean() throws Exception {
+        return cacheRegionFactoryProvider.provide("user-access-codes");
+    }
+
+    @Bean
     public ClientRegionFactoryBean tokenRegionFactoryBean() throws Exception {
         return cacheRegionFactoryProvider.provide("token-store");
     }
