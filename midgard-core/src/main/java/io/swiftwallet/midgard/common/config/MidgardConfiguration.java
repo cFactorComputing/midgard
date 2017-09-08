@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableGemfireRepositories(basePackages = {
         "com.paytezz.**.cache.repository.security",
         "com.paytezz.**.cache.repository.user",
-        "com.paytezz.**.cache.repository.token",
+        "com.paytezz.**.cache.repository.token"
 })
 @EnableTransactionManagement
 public class MidgardConfiguration {

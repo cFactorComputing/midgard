@@ -3,12 +3,12 @@ package io.swiftwallet.midgard.security.filter;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.paytezz.commons.domain.security.AuthenticatedUser;
-import com.paytezz.commons.domain.security.WalletUser;
 import com.paytezz.commons.domain.security.WalletUserAccessCode;
 import com.paytezz.commons.persistence.cache.repository.security.AuthenticatedUserCache;
 import com.paytezz.commons.persistence.cache.repository.user.UserAccessCodeCache;
+import com.paytezz.commons.persistence.cache.repository.user.WalletUserCache;
 import in.cfcomputing.odin.core.services.security.domain.GrantType;
-import in.cfcomputing.odin.core.services.security.oauth2.domain.AuthenticatedUserDetails;
+import in.cfcomputing.odin.core.services.security.oauth2.access.domain.OdinUserDetails;
 import in.cfcomputing.odin.core.services.security.provider.AuthenticatedUserProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.security.access.AccessDeniedException;
@@ -20,20 +20,25 @@ import org.springframework.stereotype.Component;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import static com.paytezz.commons.util.WalletUserReconciler.reconcile;
+
 @Component
 public class AuthenticationFilter extends ZuulFilter {
     private final AuthenticatedUserCache authenticatedUserCache;
     private final AuthenticatedUserProvider userProvider;
     private final UserAccessCodeCache quickAccessCodeCache;
+    private final WalletUserCache walletUserCache;
     private final TokenStore tokenStore;
 
     @Inject
     public AuthenticationFilter(final AuthenticatedUserCache authenticatedUserCache,
                                 final UserAccessCodeCache quickAccessCodeCache,
+                                final WalletUserCache walletUserCache,
                                 final AuthenticatedUserProvider userProvider,
                                 final TokenStore tokenStore) {
         this.authenticatedUserCache = authenticatedUserCache;
         this.userProvider = userProvider;
+        this.walletUserCache = walletUserCache;
         this.quickAccessCodeCache = quickAccessCodeCache;
         this.tokenStore = tokenStore;
     }
@@ -88,16 +93,18 @@ public class AuthenticationFilter extends ZuulFilter {
         if (StringUtils.isNotEmpty(machineId)) {
             final WalletUserAccessCode accessCode = quickAccessCodeCache.findOne(machineId);
             user.setQuickAccessCode(accessCode);
+            reconcile(user.getWalletUser(), accessCode);
         }
     }
 
     private void setUserByType(final Object user, final AuthenticatedUser newUser) {
         final GrantType grantType = userProvider.grantType();
         if (grantType == GrantType.USER) {
-            final AuthenticatedUserDetails<WalletUser> userDetails = (AuthenticatedUserDetails) user;
-            final WalletUser walletUser = userDetails.getAuthenticatedUser();
-            newUser.setWalletUser(walletUser);
-            setQuickAccessCode(walletUser.getDeviceId(), newUser);
+            final OdinUserDetails userDetails = (OdinUserDetails) user;
+            final String userId = userDetails.getFromAuthenticatedUser("id");
+            final String deviceId = userDetails.getFromAuthenticatedUser("deviceId");
+            newUser.setWalletUser(walletUserCache.findByMobileNumber(userId));
+            setQuickAccessCode(deviceId, newUser);
         } else if (GrantType.SYSTEM == grantType) {
             newUser.setUserId((String) user);
         }
