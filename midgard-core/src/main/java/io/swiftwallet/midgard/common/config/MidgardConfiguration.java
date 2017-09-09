@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableGemfireRepositories(basePackages = {
         "com.paytezz.**.cache.repository.security",
         "com.paytezz.**.cache.repository.user",
-        "com.paytezz.**.cache.repository.token",
+        "com.paytezz.**.cache.repository.token"
 })
 @EnableTransactionManagement
 public class MidgardConfiguration {
@@ -35,6 +35,11 @@ public class MidgardConfiguration {
     @Bean
     public ClientRegionFactoryBean usersRegionFactoryBean() throws Exception {
         return cacheRegionFactoryProvider.provide("users");
+    }
+
+    @Bean
+    public ClientRegionFactoryBean userAccessCodesRegionFactoryBean() throws Exception {
+        return cacheRegionFactoryProvider.provide("user-access-codes");
     }
 
     @Bean
