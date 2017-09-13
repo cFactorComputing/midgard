@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>in.cfcomputing</groupId>
         <artifactId>odin</artifactId>
         <version>1.3-SNAPSHOT</version>
     </parent>
-    <groupId>io.swiftwallet</groupId>
+    <groupId>in.cfcomputing</groupId>
     <artifactId>midgard</artifactId>
     <version>1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>SwiftWallet::Midgard</name>
+    <name>cFactor::Midgard</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,26 +21,10 @@
         <midgard-hystrix.version>1.5.9</midgard-hystrix.version>
         <midgard-guava.version>16.0.1</midgard-guava.version>
         <midgard-spring-cloud-netflix.version>1.3.0.M1</midgard-spring-cloud-netflix.version>
-        <midgard-paytezz-commons.version>1.2-SNAPSHOT</midgard-paytezz-commons.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
-            <dependency>
-                <groupId>com.paytezz.commons</groupId>
-                <artifactId>domain</artifactId>
-                <version>${midgard-paytezz-commons.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.paytezz.commons</groupId>
-                <artifactId>persistence</artifactId>
-                <version>${midgard-paytezz-commons.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.paytezz.commons</groupId>
-                <artifactId>util</artifactId>
-                <version>${midgard-paytezz-commons.version}</version>
-            </dependency>
             <dependency>
                 <groupId>in.cfcomputing.odin</groupId>
                 <artifactId>odin-core</artifactId>
@@ -56,7 +41,7 @@
                 <version>${odin.version}</version>
             </dependency>
             <dependency>
-                <groupId>io.swiftwallet.midgard</groupId>
+                <groupId>in.cfcomputing.midgard</groupId>
                 <artifactId>midgard-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -132,9 +117,6 @@
     </dependencyManagement>
     <modules>
         <module>midgard-core</module>
-        <module>midgard-main</module>
-        <module>midgard-configuration</module>
-        <module>midgard-distribution</module>
     </modules>
 
     <build>
@@ -182,10 +164,6 @@
         </plugins>
     </build>
     <scm>
-        <connection>scm:git:ssh://gibu.george@git.swiftwallet.aws.local/swiftwallet/midgard.git</connection>
-        <developerConnection>
-            scm:git:ssh://gibu.george@git.swiftwallet.aws.local/swiftwallet/midgard.git
-        </developerConnection>
-      <tag>midgard-1.1</tag>
-  </scm>
+        <tag>midgard-1.1</tag>
+    </scm>
 </project>
